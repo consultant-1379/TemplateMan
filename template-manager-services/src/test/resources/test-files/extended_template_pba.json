@@ -1,0 +1,226 @@
+{
+	"pba": {
+		"icon": "<icon path>",
+		"authorInfo": {
+			"author": "echchik",
+			"email": "chetan.chikmandya.puttegowda@ericsson.com",
+			"publishingDate": "28/02/2017 16:32:00",
+			"location": "Athlone"
+		},
+		"templateInfo": {
+			"id": "rt56-56ty-789i-096j",
+			"name": "aia-flink-streaming",
+			"title": "AIA Flink Streaming",
+			"version": "1.0.0",
+			"description": "Flink Streaming Template to simplify the Flink Kafka streaming application development complexities, it provides generated driver java class, allowing developer to focus on business logic implementation. It Supports a variety of data Sources, Sinks, and formats.  For more information, visit documentation."
+		},
+		"scmInfo": {
+			"scm": "git:ssh://gerrit.ericsson.se:29418/AIA/com.ericsson.component.aia.sdk.templates/aia-flink-streaming",
+			"scmTag": " HEAD "
+		},
+          	"processorInfo": {
+			"id": "dc34-45rf-6yu7-ser5",
+			"technology": "FLINK",
+			"version": "1.0.1",
+			"description": "flink"
+		},
+		"extensionPoints": [{
+			"technology": "kafka",
+			"name": "kafka-input",
+			"uri": {
+				"protocol": "kafka://",
+				"address": "topic_name",
+				"args": [{
+						"key": "format",
+						"value": "<avro/json>"
+					},
+					{
+						"key": "schema",
+						"value": "event1"
+					}
+				]
+			},
+			"attributes": [{
+					"key": "bootstrap.servers",
+					"value": ["<host1:port>", "<host2:port>"]
+				},
+				{
+					"key": "zookeeper.connect",
+					"value": ["<host1:port>", "<host2:port>"]
+				},
+				{
+					"key": "group.id",
+					"value": "<group.id>"
+				},
+				{
+					"key": "deserialization.schema",
+					"value": "<Implementation of org.apache.flink.streaming.util.serialization.DeserializationSchema interface>"
+				},
+				{
+					"key": "partition.assignment.strategy",
+					"value": "org.apache.kafka.clients.consumer.RangeAssignor"
+				},
+				{
+					"key": "version",
+					"value": "8/9"
+				}
+			]
+		}, {
+			"technology": "jdbc",
+			"name": "jdbc-input",
+			"uri": {
+				"protocol": "JDBC://",
+				"address": "<jdbc-uri>",
+				"args": [{
+						"key": "format",
+						"value": "<avro/json>"
+					},
+					{
+						"key": "schema",
+						"value": "EventTypeSchema"
+					}
+				]
+			},
+			"attributes": [{
+					"key": "password",
+					"value": "passwd"
+				},
+				{
+					"key": "user",
+					"value": "user-name"
+				},
+				{
+					"key": "driver",
+					"value": "{driver-class}"
+				},
+				{
+					"key": "table.name",
+					"value": "table-name"
+				}
+			]
+		}],
+		"integrationPoints": [{
+			"technology": "kafka",
+			"name": "kafka-output",
+			"uri": {
+				"protocol": "kafka://",
+				"address": "topic_name",
+				"args": [{
+						"key": "format",
+						"value": "<avro/json>"
+					},
+					{
+						"key": "schema",
+						"value": "EventTypeSchema"
+					}
+				]
+			},
+			"attributes": [{
+					"key": "bootstrap.servers",
+					"value": ["<host1:port>", "<host2:port>"]
+				},
+				{
+					"key": "serialization.schema",
+					"value": "<Implementation of org.apache.flink.streaming.util.serialization.SerializationSchema interface>"
+				},
+				{
+					"key": "version",
+					"value": "8/9"
+				}
+			]
+
+		}, {
+			"technology": "jdbc",
+			"name": "jdbc-output",
+			"uri": {
+				"protocol": "JDBC://",
+				"address": "<jdbc-uri>",
+				"args": [{
+					"key": "schema",
+					"value": "TableSchema"
+				}]
+			},
+			"attributes": [{
+					"key": "password",
+					"value": "passwd"
+				},
+				{
+					"key": "user",
+					"value": "user-name"
+				},
+				{
+					"key": "driver",
+					"value": "{driver-class}"
+				},
+				{
+					"key": "table.name",
+					"value": "table-name"
+				},
+				{
+					"key": "output.schema",
+					"value": "<POJO representing the TABLE in JDBC DB>"
+				}
+			]
+
+		}, {
+			"technology": "file",
+			"name": "file-output",
+			"uri": {
+				"protocol": "file://",
+				"address": "{path}",
+				"args": [{
+						"key": "format",
+						"value": "csv"
+					},
+					{
+						"key": "schema",
+						"value": "EventTypeSchema"
+					}
+				]
+			},
+			"attributes": []
+		}],
+		"buildInfo": {
+			"container": {
+				"docker": {
+					"name": "<Docker service name>",
+					"repoBaseUrl": "<Docker repo base URL>",
+					"repoPath": "<Docker repo path/name>",
+					"imagePath": "<Docker image path with respect to repo-path>",
+					"network": "<network type>",
+					"forcePullImage": true,
+					"privileged": true
+				}
+			},
+			"dependencies":  []
+		},
+		"deploymentInfo": {
+			"maturity": 0,
+			"servicePorts":[],
+			"stagingStatus": true,
+			"inProduction": true,
+			"deploymentScope": "private|public",
+			"noOfInstances": "1",
+			"noOfCpuPerInstance": "1",
+			"memorySize": "<In GB>",
+			"appArgs": [{
+					"key": "mainClass",
+					"value": "<main-class of flink app>"
+				},
+				{
+					"key": "masterUrl",
+					"value": "<jobmanager-ip:port>"
+				},
+				{
+					"key": "flowPath",
+					"value": "hdfs://<Namenode-ip:port>/<path on hdfs>"
+				},
+				{
+					"key": "jobArguments",
+					"value": "<other arguments>"
+				}
+			],
+			"attributes": []
+		}
+	}
+}

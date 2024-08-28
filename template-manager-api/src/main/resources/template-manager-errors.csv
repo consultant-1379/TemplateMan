@@ -1,0 +1,17 @@
+Code,Group,Developer Message,HTTP Code
+3000001,Authorization,User not authorized to invoke the called operation.,401
+3000002,Internal,Publish operation failed for when copying uploaded file to server,500
+3000003,Internal,Error while validating PBA Information. PBA is invalid.,500
+3000004,Internal,Pba not found for template,500
+3000005,Internal,Publish operation failed due to an error while invoking the Metadata service,500
+3000006,Internal,Unpublish operation failed due to an error while invoking the Metadata service,500
+3000007,Internal,Pba file is corrupted,500
+3000008,Internal,List operation failed due to an error while invoking the Metadata service,500
+3000009,Internal,Get PBA operation failed due to an error while invoking the Metadata service,500
+3000010,Internal,Operation failed due to an error while reading schema from file,500
+3000011,Internal,Template not found,500
+3000012,Internal,Error while extracting application data,500
+3000013,Internal,Error updating PBA in the filesystem,500
+3000014,Internal,Error acessing GIT repository,500
+3000015,Internal,Error creating template,500
+3000016,Internal,Parent Template not found in repository,500

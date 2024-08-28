@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+	xmlns:log4j='http://jakarta.apache.org/log4j/'>
+ 
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+		<param name="maxFileSize" value="20MB"/>
+		<param name="maxBackupIndex" value="5"/>
+		<param name="file" value="logs/template_manager.log"/>
+	    <layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" 
+		  value="%d{yyyy-MM-dd HH:mm:ss} TM-LOG: level=%-5p thread='%t' class=%c{1} line=%L - %m%n" />
+	    </layout>
+	</appender>
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	    <layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" 
+		  value="%d{yyyy-MM-dd HH:mm:ss} TM-LOG: level=%-5p thread='%t' class=%c{1} line=%L - %m%n" />
+	    </layout>
+	</appender>
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="file" />
+		<appender-ref ref="console" />
+	</root>
+</log4j:configuration>
